@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YelpCamp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+	<style>
+		.column{
+		margin-left:50px;
+		}
+	</style>
+    <body>
+		    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/delivery">Local market</a>
+				<a class="navbar-brand" href="/delivery">Home</a>
+				<!-- <a href="#" class="navbar-brand">< foundnoti.username %></a> -->
+            </div>
+				</div>
+		</nav>
+		<a href="deliverycancelpast">View past cancel orders</a>
+		<div class="container">
+			<% cancel.forEach(function(noti){ %>
+			<div class="row">
+				<p>
+					Customer name:<strong><%= noti.username %></strong>, Customer address:<strong><%= noti.useraddress %></strong>, Shopkeeper name:<strong><%= noti.shopkeepername %></strong>, Shopkeeper address:<strong><%= noti.shopkeeperaddress %></strong>, Product name:<strong><%= noti.prname %></strong>, Product price:<strong><%= noti.prprice %></strong>, Reason:<strong><%= noti.replacereason %></strong>
+				<!-- </p><a href="/deliveryreplaced/<noti._id %>" class="btn btn-success">Replacement accepted</a> -->
+			</div>
+					
+			<% }) %>
+		</div>
+	</body>
+</html>

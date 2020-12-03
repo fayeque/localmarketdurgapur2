@@ -1,0 +1,136 @@
+<html>
+	<head>
+	<title>local market</title>
+	<!-- <meta charset="utf-8"> -->
+	<meta  name="viewport" content="width=device-width,initial-scale=1.0">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<style>
+		
+
+	nav{
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:55px;
+		padding:10px 90px;
+		box-sizing:border-box;
+		background:rgba(0,0,0,0.5);
+	}
+	nav .logo{
+		padding:8px 20px;
+		height:45px;
+		float:left;
+		font-size:18px;
+		font-weight:bold;
+		text-transform:uppercase;
+		color:#fff;
+	}
+	nav ul{
+		list-style:none;
+		float:right;
+		margin:0;
+		padding:0;
+		display:flex;
+	}
+	nav ul li a{
+		line-height:40px;
+		color:#fff;
+		padding:8px 30px;
+		text-decoration:none;
+		font-size:15px;
+		font-weight:bold;
+	}
+	nav ul li a:hover{
+		background:rgba(0,0,0,0.7);
+		border-radius:6px;
+		
+	}
+	nav ul li a.active{
+		background:#e2472f;
+		color:#fff;
+		border-radius:6px;
+	}
+	/* section{
+		width:100%;
+		height:100vh;
+		background:url("https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+		background-size:cover;
+		background-position:center;
+		
+	} */
+		.main
+		{
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		input
+		{
+			border:3px solid #32e17c;
+			height: 40px;
+			width: 300px;
+			border-radius: 50px;
+			padding:0px 30px;
+		}
+		input.search-txt:focus{
+			outline-width: 0;
+		}
+		.searchbtn1
+		{
+			position: relative;
+			width:25px;
+			left: 10px;
+			bottom: 27px;
+		}
+	</style>
+
+	</head>
+	<body>
+	<div class="wrap">
+		<nav>
+			<div class="logo">Local Market</div>
+			<ul>
+				<li><a class="active" href="/">Home</a></li>
+				 <% if(!currentUser){ %> 
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">SignUp</a></li>
+				 <% }else{%> 
+				<!-- <li><a href="/usernotification" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge">< user.notifications.length %></span></a> -->
+				<!-- </li> -->
+				<li><a href="#">Signed in as <%= currentUser.name %></a></li>
+				<li><a href="/logout">Logout</a></li>
+				<% } %>
+			</ul>
+		</nav>
+		</div>
+	<div style="margin-top:5%;" class="container">
+						<% if(success && success.length>0){ %>
+		<div class="alert alert-success" role="alert">
+  <%= success %>
+		</div>
+		<% } %>
+		<% if(error && error.length>0){ %>
+		<div class="alert alert-danger" role="alert">
+			<%= error %>
+</div>
+		<% } %>
+		</div>
+		<h3 style="margin-left:5px;">
+				<p>
+				<a style="font-size:18px;" href="/checkout">want to use the different address?</a>	
+			</p>
+			<p>
+				<a style="font-size:12px;" href="/edit/<%= user.address[0]._id %>">Edit default address</a>	
+			</p>
+			<br>
+				<a class="btn btn-success" href="/buying/<%= user._id %>/<%= user.address[0]._id %>/<%= user.usernoti[0]._id %>">Buy</a>
+			
+		</h3>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+	<style>
+		.column{
+		margin-left:50px;
+		}
+	</style>
+    <body>
+		    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/shopkeeperloggedin">Local market</a>
+				<a class="navbar-brand" href="/shopkeeperloggedin">Home</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+				 <% if(!currentShopkeeper){ %> 
+				<li><a href="/shopkeeperlogin">Login</a></li>
+				<li><a href="/register">SignUp</a></li>
+				 <% }else{%> 
+				 <li class="dropdown">
+					 <!-- <a href="/shopkeepernotification" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge">< notification.length %></span></a></li> -->
+                          <!-- <li><a href="/shopkeeperorders" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders <span class="badge">< order.length %></span></a></li> -->
+				<li><a href="#">Signed in as <%= currentShopkeeper.name %></a></li>
+				<li><a href="/shopkeeperlogout">Logout</a></li>
+				<% } %>
+			</ul>
+			</div>
+		</div>
+		</nav>
+	<div style="margin-top:5%;" class="container">
+						<% if(success && success.length>0){ %>
+		<div class="alert alert-success" role="alert">
+  <%= success %>
+		</div>
+		<% } %>
+		</div>
+		<% if(error && error.length>0){ %>
+		<div class="alert alert-danger" role="alert">
+			<%= error %>
+</div>
+		<% } %>
+		<h1>All availability notifications </h1>
+	<div class="row">
+		<% notification.forEach(function(notification){ %>
+			<div class="column">
+				<p> <%= notification.username %> </p>
+				<p> <%= notification.prname %>  </p>
+				<p> <%= notification.prprice %>  </p>
+				<form action="/useravailability/<%= notification.customerid %>/<%= notification._id %>/<%= id %>/<%= userid %>" method="POST">
+					<input type="number" name="prprice" value="<%= notification.pprice %>">
+					<input type="number" name="stock" value="<%= notification.stock %>">
+					<!-- <input type="" name="prprice" placeholder="enter your price"> -->
+					<input type="text" name="description" value="<%= notification.description %>" >
+						 <div class="form-group">
+    <!-- <label for="exampleInputEmail1"> </label> -->
+		 <select style="margin-left:25px;" name="selectpicker" required>
+			 <option value="" name="0">Select policy</option>
+			 <option value="refundable" name="refundable">Is refundable?</option>
+			  <option value="replaceable" name="replaceable">Is replaceable</option>
+			  <option value="refundreplaceable" name="refundreplaceable">Is refundable and replaceable both?</option>
+			  <option value="none" name="none">None</option>
+				</select>
+				<button class="btn btn-primary">submit</button>
+					</div>
+				</form>
+				<!-- <a href="/shopkeeper/< id %>/< notification._id %>" class="btn btn-danger">Cancel</a> -->
+		</div>
+		<br>
+		<% }) %>
+	</div>
+
+	</body>
+</html>

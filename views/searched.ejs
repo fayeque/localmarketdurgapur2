@@ -1,0 +1,98 @@
+<html>
+	<head>
+	<title>local market</title>
+	 <!-- <meta charset="utf-8">
+	 <meta  name="viewport" content="width=device-width,initial-scale=1.0"> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	</head>
+<style>
+		
+
+	nav{
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:55px;
+		padding:10px 90px;
+		box-sizing:border-box;
+		background:rgba(0,0,0,0.5);
+	}
+	nav .logo{
+		padding:8px 20px;
+		height:45px;
+		float:left;
+		font-size:18px;
+		font-weight:bold;
+		text-transform:uppercase;
+		color:#fff;
+	}
+	nav ul{
+		list-style:none;
+		float:right;
+		margin:0;
+		padding:0;
+		display:flex;
+	}
+	nav ul li a{
+		line-height:40px;
+		color:#fff;
+		padding:8px 30px;
+		text-decoration:none;
+		font-size:15px;
+		font-weight:bold;
+	}
+	nav ul li a:hover{
+		background:rgba(0,0,0,0.7);
+		border-radius:6px;
+		
+	}
+	nav ul li a.active{
+		background:#e2472f;
+		color:#fff;
+		border-radius:6px;
+	}
+	.container{
+		margin-top:25px;
+	}
+		</style>
+		<body>
+				<div class="wrap">
+		<nav>
+			<div class="logo">Local Market</div>
+			<ul>
+				<li><a class="active" href="/">Home</a></li>
+				 <% if(!currentUser){ %> 
+				<li><a href="/login">Login</a></li>
+				<li><a href="/register">SignUp</a></li>
+				 <% }else{%> 
+				<li><a href="#">Signed in as <%= currentUser.name %></a></li>
+				<li><a href="/logout">Logout</a></li>
+				<% } %>
+			</ul>
+		</nav>
+		</div>
+	<div style="margin-top:5%;" class="container">
+						<% if(success && success.length>0){ %>
+		<div class="alert alert-success" role="alert">
+  <%= success %>
+		</div>
+		<% } %>
+		</div>
+		<% if(error && error.length>0){ %>
+		<div class="alert alert-danger" role="alert">
+			<%= error %>
+</div>
+		<% } %>
+		<div class="container">
+			<p>
+				Product name: <strong><%= prname %></strong>
+			</p>
+			<p>
+				Product price: <strong><%= prprice %></strong>
+			</p>
+			</div>
+		</body>
+</html>

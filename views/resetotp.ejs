@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>yelpcam</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+			<div class="container">
+					<% if(error && error.length>0){ %>
+		<div class="alert alert-danger" role="alert">
+			<%= error %>
+</div>
+		<% } %>
+		<% if(success && success.length>0){ %>
+		<div class="alert alert-success" role="alert">
+  <%= success %>
+		</div>
+			<% } %>
+	</div>
+<div style="margin-top:25px;" class="container">
+		<form action="/verifyotp/<%= user._id %>" method="POST">
+		  <legend>Enter otp</legend>
+			<input style="width:200px;" type="number" name="otp"  placeholder="Enter otp" class="form-control"/>
+		    <button style="margin-top:20px;" type="submit" class="btn btn-primary">Submit</button>
+		  
+		</form>
+	</div>
+	</body>
+</html>
